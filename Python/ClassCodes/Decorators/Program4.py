@@ -1,0 +1,17 @@
+
+def decorFun(funRef):
+
+    def innerFun():
+        print("Start Decoration")
+        funRef()
+        print("End Decoration")
+
+    return innerFun
+
+@decorFun
+
+def fun():
+
+    print("In Fun")
+
+fun()

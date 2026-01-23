@@ -1,0 +1,32 @@
+
+
+class Outer:
+
+    def __init__(self):
+
+        print("Outer Constructor")
+
+    class Inner:
+
+        def __init__(self):
+
+            print("Inner Constructor")
+
+        def innerFun(self):
+
+            print("Inner Instance Method")
+
+    def outerFun(self):
+
+        print("Outer Instance Method")
+
+
+obj = Outer()
+
+obj.outerFun()
+
+
+
+obj2 = obj.Inner()
+
+onj2.innerFun()
