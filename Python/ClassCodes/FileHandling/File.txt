@@ -1,0 +1,255 @@
+File Handling in Python
+
+File handling means reading data from a file and writing data to a file using Python. It allows programs to store data permanently instead of keeping it only in memory.
+
+1. Opening a File
+
+In Python, a file is opened using the open() function.
+
+Syntax:
+
+file = open("filename", "mode")
+
+Example:
+
+file = open("data.txt", "r")
+
+Here:
+
+"data.txt" → file name
+
+"r" → mode (read)
+
+2. File Modes
+Mode	Meaning
+r	Read file
+w	Write file (creates new file if not exists)
+a	Append data to file
+r+	Read and write
+b	Binary mode
+
+
+
+*******
+
+Closing a File in Python
+
+Closing a file means releasing the file after completing read or write operations.
+It is done using the close() method.
+
+Closing a file is important because it:
+
+Saves the changes made to the file
+
+Frees system resources
+
+Prevents data corruption
+
+Syntax
+file_object.close()
+Example Program
+file = open("data.txt", "r")
+
+data = file.read()
+print(data)
+
+file.close()
+
+Explanation:
+
+open() → opens the file
+
+read() → reads the content
+
+close() → closes the file
+
+
+
+Using with Statement (Recommended)
+
+The with statement automatically closes the file after execution.
+
+with open("data.txt", "r") as file:
+    data = file.read()
+    print(data)
+
+Here, you do not need to write close().
+
+
+
+*************
+
+
+Why with is Useful in Python File Handling
+
+The with statement is used to open a file in a safe and automatic way.
+
+When we use with, Python automatically closes the file after the block of code finishes, even if an error occurs.
+
+Example
+with open("data.txt", "r") as fileObj:
+    data = fileObj.read()
+    print(data)
+
+Here:
+
+File opens at the start of the block
+
+File automatically closes when the block ends
+
+No need to write close()
+
+Advantages of with
+
+Automatically closes the file
+
+Prevents memory leaks
+
+Code becomes cleaner and shorter
+
+Safe even if an error occurs
+
+
+***********
+
+Why close() is Important
+
+The close() function is used to terminate the connection between the program and the file.
+
+Example
+fileObj = open("data.txt", "r")
+data = fileObj.read()
+print(data)
+
+fileObj.close()
+Importance of close()
+
+Saves the changes made to the file
+
+Releases system resources
+
+Prevents data corruption
+
+Allows other programs to use the file
+
+**************
+
+Pickling in Python
+
+Pickling is the process of converting a Python object into a byte stream (binary format) so that it can be stored in a file or transferred over a network.
+
+It is done using the pickle module in Python.
+
+Definition
+
+Pickling means saving a Python object into a file in binary format.
+
+Example of Pickling
+import pickle
+
+data = ["Shivkumar", "Atharva", "Harish"]
+
+file = open("data.pkl", "wb")
+
+pickle.dump(data, file)
+
+file.close()
+
+Explanation:
+
+pickle.dump() → converts object into binary format and stores in file
+
+"wb" → write binary mode
+
+
+***********
+
+Unpickling (Reading Pickled Data)
+
+Unpickling means converting the binary data back into the original Python object.
+
+import pickle
+
+file = open("data.pkl", "rb")
+
+data = pickle.load(file)
+
+print(data)
+
+file.close()
+
+Output:
+
+['Shivkumar', 'Atharva', 'Harish']
+
+Explanation:
+
+pickle.load() → reads binary data and converts it back to a Python object
+
+"rb" → read binary mode
+
+Pickle Functions
+Function	Description
+dump()	Writes object to file
+load()	Reads object from file
+dumps()	Converts object to bytes
+loads()	Converts bytes to object
+
+
+*******************
+
+Serialization and Deserialization in Python
+1. Serialization
+
+Serialization is the process of converting a Python object into a byte stream (binary or text format) so that it can be stored in a file or sent over a network.
+
+In Python, serialization is commonly done using the pickle module.
+
+Example (Serialization)
+import pickle
+
+data = {"name": "Shivkumar", "branch": "ENTC"}
+
+file = open("student.pkl", "wb")
+
+pickle.dump(data, file)
+
+file.close()
+
+Explanation:
+
+pickle.dump() converts the Python object into binary format and stores it in the file.
+
+
+*******************
+
+
+
+2. Deserialization
+
+Deserialization is the process of converting the stored byte stream back into the original Python object.
+
+Example (Deserialization)
+import pickle
+
+file = open("student.pkl", "rb")
+
+data = pickle.load(file)
+
+print(data)
+
+file.close()
+
+Output:
+
+{'name': 'Shivkumar', 'branch': 'ENTC'}
+
+Explanation:
+
+pickle.load() converts the binary data back to a Python object.
+
+Difference Between Serialization and Deserialization
+Serialization	Deserialization
+Converts object → byte stream	Converts byte stream → object
+Used to store or transfer data	Used to retrieve data
+Uses pickle.dump()	Uses pickle.load()
